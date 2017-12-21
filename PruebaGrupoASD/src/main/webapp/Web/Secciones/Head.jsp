@@ -38,7 +38,7 @@
             <li><a href="#">Buscar</a></li>
             <li><a href="#">Crear</a></li>
             <li><a href="#">Actualizar</a></li>
-            <li><a href="#">Listar áreas</a></li>
+            <li><a href="${pageContext.request.contextPath}/Web/ListarAreas.jsp">Listar áreas</a></li>
             <li><a href="${pageContext.request.contextPath}/Web/ListarPersonas.jsp">Listar personas</a></li>                     
           </ul>
 

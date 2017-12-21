@@ -19,7 +19,7 @@ import javax.ws.rs.core.Response;
  * @author Santiago
  */
 @Path("personal")
-public class Personal {
+public class ServicioPersonal {
     
     EmpleadoDAO empleadoDAO = new EmpleadoDAO();
     
@@ -30,7 +30,7 @@ public class Personal {
         List<Empleado> empleados = empleadoDAO.getEmpleados();
         
         if(empleados != null)
-            return Response.ok(empleadoDAO.getEmpleados()).build();
+            return Response.ok(empleados).build();
         else
             return Response.status(Response.Status.NOT_FOUND);
     }
