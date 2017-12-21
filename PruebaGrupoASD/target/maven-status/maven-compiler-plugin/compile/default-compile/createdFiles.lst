@@ -1,0 +1,10 @@
+com\grupoasd\prueba\dao\EmpleadoDAO.class
+com\grupoasd\prueba\modelo\ActivoFijo.class
+com\grupoasd\prueba\servicios\Personal.class
+com\grupoasd\prueba\dao\ActivoFijoDAO.class
+com\grupoasd\prueba\modelo\Empleado.class
+com\grupoasd\prueba\dao\AbstractDAO.class
+com\grupoasd\prueba\servicios\Configuracion.class
+com\grupoasd\prueba\conexion\Conexion.class
+com\grupoasd\prueba\dao\CaracteristicaDAO.class
+com\grupoasd\prueba\modelo\Caracteristica.class
