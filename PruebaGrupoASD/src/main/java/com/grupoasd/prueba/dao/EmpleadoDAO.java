@@ -22,7 +22,9 @@ public class EmpleadoDAO extends AbstractDAO{
     
     public List<Empleado> getEmpleados(){
         List<Empleado> empleados = new ArrayList();
-        String consulta = "SELECT e.cedula CEDULA , e.nombre NOMBRE, e.apellido APELLIDO ,e.fechanacimiento FECHANACIMIENTO,e.cargo CARGO , c.nombreCiudad CIUDAD, a.nombrearea AREA FROM EMPLEADO e, CIUDAD c, Area a  WHERE c.idCiudad = e.idCiudad AND a.idarea = e.idarea AND c.idCiudad = a.idCiudad";
+
+        String consulta = "SELECT e.cedula CEDULA , e.nombre NOMBRE, e.apellido APELLIDO ,e.fechanacimiento FECHANACIMIENTO,e.cargo CARGO ,c.nombreCiudad CIUDAD, a.nombrearea AREA FROM EMPLEADO e, CIUDAD c, Area a  WHERE c.idCiudad = e.IDCIUDAD AND a.IDAREA = e.IDAREA AND c.IDCIUDAD = a.IDCIUDAD";
+
         try {
             this.connection = Conexion.getConexion();
             this.statement = connection.createStatement();

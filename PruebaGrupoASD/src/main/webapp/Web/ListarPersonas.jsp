@@ -15,9 +15,9 @@
                     <th>Cedula</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
-                    <th>Fecha de Nacimiento</th>                    
-                    <th>Ciudad</th>
+                    <th>Fecha de Nacimiento</th>                                       
                     <th>Area</th>
+                    <th>Ciudad</th>
                     <th>Cargo</th>                    
                 </tr>
             </thead>
