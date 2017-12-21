@@ -25,12 +25,9 @@ public class EmpleadoDAO extends AbstractDAO{
         String consulta = "SELECT * FROM EMPLEADO";
         try {
             this.connection = Conexion.getConexion();
-            System.out.println("Connecction: "+this.connection);
             this.statement = connection.createStatement();
-            System.out.println("Statement: "+this.statement);
             this.resultSet = statement.executeQuery(consulta);
-            System.out.println("ResultSet: "+this.resultSet);
-            
+                       
             while (resultSet.next()){
                 empleados.add((Empleado) this.getEntityByResultSet(resultSet));
             }
@@ -42,7 +39,7 @@ public class EmpleadoDAO extends AbstractDAO{
             Conexion.desconectar();
         }
 
-        if (empleados!= null) {
+        if (!empleados.isEmpty()) {
             return empleados;
         } else {
             return null;

@@ -6,6 +6,8 @@
 package com.grupoasd.prueba.servicios;
 
 import com.grupoasd.prueba.dao.EmpleadoDAO;
+import com.grupoasd.prueba.modelo.Empleado;
+import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -23,8 +25,13 @@ public class Personal {
     
     @GET    
     @Produces({MediaType.APPLICATION_JSON})
-    public Response getPersonal(){
+    public Object getPersonal(){
         System.out.println("GET Personal");
-        return Response.ok(empleadoDAO.getEmpleados()).build();
+        List<Empleado> empleados = empleadoDAO.getEmpleados();
+        
+        if(empleados != null)
+            return Response.ok(empleadoDAO.getEmpleados()).build();
+        else
+            return Response.status(Response.Status.NOT_FOUND);
     }
 }
