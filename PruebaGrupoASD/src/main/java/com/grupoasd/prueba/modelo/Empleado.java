@@ -14,8 +14,8 @@ import java.util.Date;
 public class Empleado {
     
     private String cedula;
-    private int idCiudad;
-    private int idArea;
+    private String idCiudad;
+    private String idArea;
     private String nombre;
     private String apellido;
     private Date fechaNacimiento;
@@ -29,19 +29,19 @@ public class Empleado {
         this.cedula = cedula;
     }
 
-    public int getIdCiudad() {
+    public String getIdCiudad() {
         return idCiudad;
     }
 
-    public void setIdCiudad(int idCiudad) {
+    public void setIdCiudad(String idCiudad) {
         this.idCiudad = idCiudad;
     }
 
-    public int getIdArea() {
+    public String getIdArea() {
         return idArea;
     }
 
-    public void setIdArea(int idArea) {
+    public void setIdArea(String idArea) {
         this.idArea = idArea;
     }
 

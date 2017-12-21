@@ -22,7 +22,7 @@ public class EmpleadoDAO extends AbstractDAO{
     
     public List<Empleado> getEmpleados(){
         List<Empleado> empleados = new ArrayList();
-        String consulta = "SELECT * FROM EMPLEADO";
+        String consulta = "SELECT e.cedula CEDULA , e.nombre NOMBRE, e.apellido APELLIDO ,e.fechanacimiento FECHANACIMIENTO,e.cargo CARGO ,c.nombreCiudad CIUDAD, a.nombrearea AREA FROM EMPLEADO e, CIUDAD c, Area a  WHERE c.idCiudad = e.IDCIUDAD AND a.IDAREA = e.IDAREA AND c.IDCIUDAD = a.IDCIUDAD";
         try {
             this.connection = Conexion.getConexion();
             this.statement = connection.createStatement();
@@ -52,8 +52,8 @@ public class EmpleadoDAO extends AbstractDAO{
         e.setCedula(String.valueOf(resultSet.getInt("CEDULA")));
         e.setNombre(resultSet.getString("NOMBRE"));
         e.setApellido(resultSet.getString("APELLIDO"));
-        e.setIdArea(resultSet.getInt("IDAREA"));
-        e.setIdCiudad(resultSet.getInt("IDCIUDAD"));
+        e.setIdArea(resultSet.getString("AREA"));
+        e.setIdCiudad(resultSet.getString("CIUDAD"));
         e.setCargo(resultSet.getString("CARGO"));
         e.setFechaNacimiento(resultSet.getDate("FECHANACIMIENTO"));
         
