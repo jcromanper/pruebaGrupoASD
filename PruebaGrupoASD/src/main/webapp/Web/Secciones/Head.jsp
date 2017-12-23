@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/Web/css/bootstrap-theme.min.css">
         
         <script type="text/javascript" charset="utf8" src="${pageContext.request.contextPath}/Web/js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="${pageContext.request.contextPath}/Web/js/jquery.validate.min.js"></script>
         <script type="text/javascript" charset="utf8" src="${pageContext.request.contextPath}/Web/js/bootstrap.min.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Prueba ASD</title>
@@ -35,9 +36,9 @@
         
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Buscar</a></li>
-            <li><a href="#">Crear</a></li>
-            <li><a href="#">Actualizar</a></li>
+            <li><a href="#">Buscar Activos</a></li>
+            <li><a href="${pageContext.request.contextPath}/Web/CrearActivos.jsp">Crear Activos</a></li>
+            <li><a href="#">Actualizar Activos</a></li>
             <li><a href="${pageContext.request.contextPath}/Web/ListarAreas.jsp">Listar áreas</a></li>
             <li><a href="${pageContext.request.contextPath}/Web/ListarPersonas.jsp">Listar personas</a></li>                     
           </ul>
