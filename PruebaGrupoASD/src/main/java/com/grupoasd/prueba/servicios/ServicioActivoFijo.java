@@ -7,12 +7,9 @@ package com.grupoasd.prueba.servicios;
 
 import com.grupoasd.prueba.dao.ActivoFijoDAO;
 import com.grupoasd.prueba.modelo.ActivoFijo;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
@@ -37,9 +34,21 @@ public class ServicioActivoFijo {
         if(activoDAO.crearActivo(activo) == 1){
             return Response.status(Response.Status.CREATED).header("Creado", "El recurso ha sido creado").build();
         }
-        return Response.status(Response.Status.BAD_REQUEST).header("Solicitud incorrecta", "El recurso no pudo ser creado").build();
+        return Response.status(Response.Status.BAD_REQUEST).header("Solicitud incorrecta", "El recurso no pudo ser creado").build();       
         
+    }
+    
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Object getActivos(){
+        System.out.println("Get Activos");
+        List<ActivoFijo> activos = activoDAO.getAllActivos();
+        System.out.println("ActivoDAO: "+activos);
         
+        if (activos != null)
+            return Response.ok(activos).build();
+        else
+            return Response.status(Response.Status.NOT_FOUND);                
     }
 
     private ActivoFijo crearActivo(JSONObject jsonObj) {
