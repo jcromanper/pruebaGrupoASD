@@ -9,6 +9,8 @@ import com.grupoasd.prueba.conexion.Conexion;
 import com.grupoasd.prueba.modelo.ActivoFijo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -40,7 +42,47 @@ public class ActivoFijoDAO extends AbstractDAO {
 
     @Override
     public Object getEntityByResultSet(ResultSet resultSet) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ActivoFijo activo = new ActivoFijo();
+        
+        activo.setNumInterno(resultSet.getInt("NUMINTERNOINVENTARIO"));
+        activo.setSerial(resultSet.getString("SERIAL"));
+        activo.setIdTipo(resultSet.getInt("IDTIPOACTIVOFIJO"));        
+        activo.setEstado(resultSet.getInt("IDESTADO"));  
+        activo.setCedula(resultSet.getString("CEDULA"));
+        //activo.setEmpleadoAsignado(resultSet.getString("NOMBREEMPLEADO"));
+        //activo.setArea(resultSet.getString("NOMBREAREA"));
+        //activo.setCiudad(resultSet.getString("NOMBRECIUDAD"));
+        activo.setNombre(resultSet.getString("NOMBREACTIVO"));
+        activo.setDate(resultSet.getString("FECHACOMPRA"));
+        activo.setDateBaja(resultSet.getString("FECHABAJA"));        
+        activo.setValor(resultSet.getDouble("VALOR"));
+        activo.setDescripcion(resultSet.getString("DESCRIPCION"));
+        
+        
+        return activo;
+    }
+
+    public List<ActivoFijo> getAllActivos() {
+        List<ActivoFijo> activos = new ArrayList();
+        
+        String consulta = "SELECT * FROM ACTIVOFIJO";
+        try {
+            this.connection = Conexion.getConexion();
+            this.statement = connection.createStatement();
+            this.resultSet = statement.executeQuery(consulta);
+            
+            while(resultSet.next()){
+                activos.add((ActivoFijo) getEntityByResultSet(resultSet));
+            }
+        } catch (SQLException ex) {
+            System.out.println("No se pudo realizar la consulta: " + ex.getMessage());
+            return null;
+        }
+        
+        if(!activos.isEmpty()){
+            return activos;
+        }
+        return null;
     }
 
 }

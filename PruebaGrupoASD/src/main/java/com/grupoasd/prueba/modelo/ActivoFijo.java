@@ -17,9 +17,14 @@ public class ActivoFijo {
     private String nombre;
     private String descripcion;
     private String date;
+    private String dateBaja;
     private int estado;
     private double valor;
     private int idTipo;
+    private String cedula;
+    private String empleadoAsignado;
+    private String ciudad;
+    private String area;
 
     public int getIdTipo() {
         return idTipo;
@@ -85,6 +90,48 @@ public class ActivoFijo {
     public void setEstado(int estado) {
         this.estado = estado;
     }
+    
+    public String getDateBaja() {
+        return dateBaja;
+    }
+
+    public void setDateBaja(String dateBaja) {
+        this.dateBaja = dateBaja;
+    }
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
+    public String getEmpleadoAsignado() {
+        return empleadoAsignado;
+    }
+
+    public void setEmpleadoAsignado(String empleadoAsignado) {
+        this.empleadoAsignado = empleadoAsignado;
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+    
+    
     
     
     
