@@ -10,8 +10,8 @@
 <!DOCTYPE html>
 <jsp:include page="Secciones/Head.jsp"/>
 <script>
-    
-    var activoA={};
+
+    var activoA = {};
 
     function buscarTipo() {
         var tipo = $('#tipo').val()
@@ -85,62 +85,70 @@
         });
         $('#serial').val("")
     }
-    
-    function fijarActivo(a){
-        console.log("Activo: "+a);
-        this.activoA = a;    
+
+    function fijarActivo(a) {
+        console.log("Activo: " + a);
+        this.activoA = a;
         console.log(activoA.serial);
-    }    
-    
-    function actualizarSerial(){
+    }
+
+    function actualizarSerial() {
         var serial = $('#serialAct').val();
-        console.log("Actualizar Serial: "+serial);
-        
+        console.log("Actualizar Serial: " + serial);
         $.ajax({
             type: 'PUT',
-            url: '${pageContext.request.contextPath}/rest/activo/actualizar/serial/' + serial,
+            url: '${pageContext.request.contextPath}/rest/activo/actualizar/serial/' + serial+'/'+activoA.serial+'/'+activoA.numInterno,
             data: JSON.stringify(serial),
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            success: function (activos) {
-                console.log(activos);
-                
+            success: function (response) {
+                if (response !== 'undefined') {
+                        alert("Serial ACTUALIZADO");
+                }
+
             },
             error: function (textStatus) {
                 console.log(textStatus);
 
             }
         });
-        
+
         $('#serialAct').val("");
     }
-    
-    function actualizarFecha(){
-        var dateBaja = $('#dateBaja').val();
-        console.log("Actualizar Fecha: "+dateBaja);      
-        
-        $.ajax({
-            type: 'PUT',
-            url: '${pageContext.request.contextPath}/rest/activo/actualizar/fechaBaja/' + dateBaja,
-            data: JSON.stringify(dateBaja),
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            success: function (activos) {
-                console.log(activos);
-                
-            },
-            error: function (textStatus) {
-                console.log(textStatus);
 
-            }
-        });
-        
-        $('#dateBaja').val("");
-        
+    function actualizarFecha() {
+        var dateBaja = $('#dateBaja').val();
+        console.log("Actualizar Fecha: " + dateBaja);
+
+        if (dateBaja < activoA.date) {
+            alert("Fecha de baja erronea");
+        } else {
+
+            $.ajax({
+                type: 'PUT',
+                url: '${pageContext.request.contextPath}/rest/activo/actualizar/fechaBaja/' + dateBaja + '/' + activoA.serial + '/' + activoA.numInterno,
+                data: JSON.stringify(dateBaja),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                success: function (response) {
+                    if (response !== 'undefined') {
+                        alert("Fecha de Baja ACTUALIZADA");
+                    }
+
+                },
+                error: function (textStatus) {
+                    console.log(textStatus);
+
+                }
+            });
+
+            $('#dateBaja').val("");
+        }
+
     }
 
     function obtenerFila(activo) {
@@ -157,8 +165,8 @@
                 <td>" + activo.dateBaja + "</td>\
                 <td>" + activo.idTipo + "</td>\
                 <td>" + activo.estado + "</td>\
-                <td><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#myModalSerial' onclick = 'fijarActivo("+JSON.stringify(activo)+")'>Serial</button></td>\
-                <td><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#myModalFecha' onclick = 'fijarActivo("+JSON.stringify(activo)+")'>Fecha</button></td></tr>"
+                <td><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#myModalSerial' onclick = 'fijarActivo(" + JSON.stringify(activo) + ")'>Serial</button></td>\
+                <td><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#myModalFecha' onclick = 'fijarActivo(" + JSON.stringify(activo) + ")'>Fecha</button></td></tr>"
 
     }
 
@@ -363,15 +371,15 @@
                         <input size="16" type="date" name="date" id="dateBaja" class="form-control">
                     </div>
 
-                    
+
                 </form>
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                
+
                 <input class="btn btn-primary" type="button" onclick="actualizarFecha()" value = "Actualizar fecha" />
-                    
+
             </div>
         </div>
     </div>

@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -157,6 +159,39 @@ public class ActivoFijoDAO extends AbstractDAO {
             return activos;
         }
         return null;
+    }
+
+    public int actualizarFechaBaja(String fechaBaja, String serial, String numInterno) {
+        
+        String update="UPDATE ACTIVOFIJO SET FECHABAJA=STR_TO_DATE('"+fechaBaja+"','%Y-%m-%d') WHERE SERIAL='"+serial+"' AND NUMINTERNOINVENTARIO="+numInterno;
+        System.out.println(update);
+        int r = 0;
+        try {
+            this.connection = Conexion.getConexion();
+            this.statement = connection.createStatement();
+            r = statement.executeUpdate(update);
+        } catch (SQLException ex) {
+            System.out.println("No se pudo realizar la consulta: " + ex.getMessage());
+            return 0;
+        }
+        
+        return r;
+    }
+
+    public int actualizarSerial(String nSerial, String serial, String numInterno) {
+        String update="UPDATE ACTIVOFIJO SET SERIAL='"+nSerial+"' WHERE SERIAL='"+serial+"' AND NUMINTERNOINVENTARIO="+numInterno;
+        System.out.println(update);
+        int r = 0;
+        try {
+            this.connection = Conexion.getConexion();
+            this.statement = connection.createStatement();
+            r = statement.executeUpdate(update);
+        } catch (SQLException ex) {
+            System.out.println("No se pudo realizar la consulta: " + ex.getMessage());
+            return 0;
+        }
+        
+        return r;
     }
 
 }
