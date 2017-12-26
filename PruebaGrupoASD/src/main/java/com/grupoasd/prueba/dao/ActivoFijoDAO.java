@@ -61,6 +61,80 @@ public class ActivoFijoDAO extends AbstractDAO {
         
         return activo;
     }
+    
+    public List<ActivoFijo> getActivosByTipo(String tipo){
+        List<ActivoFijo> activos = new ArrayList();
+        
+        String consulta = "SELECT * FROM ACTIVOFIJO WHERE IDTIPOACTIVOFIJO="+tipo;
+        
+        try {
+            this.connection = Conexion.getConexion();
+            this.statement = connection.createStatement();
+            this.resultSet = statement.executeQuery(consulta);
+            
+            while(resultSet.next()){
+                activos.add((ActivoFijo) getEntityByResultSet(resultSet));
+            }
+        } catch (SQLException ex) {
+            System.out.println("No se pudo realizar la consulta: " + ex.getMessage());
+            return null;
+        }
+        
+         if(!activos.isEmpty()){
+            return activos;
+        }
+        return null;
+        
+    }
+    public List<ActivoFijo> getActivosByFecha(String fecha){
+        List<ActivoFijo> activos = new ArrayList();
+        
+        String consulta = "SELECT * FROM ACTIVOFIJO WHERE FECHACOMPRA='"+fecha+"'";
+        
+        try {
+            this.connection = Conexion.getConexion();
+            this.statement = connection.createStatement();
+            this.resultSet = statement.executeQuery(consulta);
+            
+            while(resultSet.next()){
+                activos.add((ActivoFijo) getEntityByResultSet(resultSet));
+            }
+        } catch (SQLException ex) {
+            System.out.println("No se pudo realizar la consulta: " + ex.getMessage());
+            return null;
+        }
+        
+         if(!activos.isEmpty()){
+            return activos;
+        }
+        return null;
+        
+    }
+    public List<ActivoFijo> getActivosBySerial(String serial){
+        List<ActivoFijo> activos = new ArrayList();
+        
+        String consulta = "SELECT * FROM ACTIVOFIJO WHERE SERIAL='"+serial+"'";
+        
+        try {
+            this.connection = Conexion.getConexion();
+            this.statement = connection.createStatement();
+            this.resultSet = statement.executeQuery(consulta);
+            
+            while(resultSet.next()){
+                activos.add((ActivoFijo) getEntityByResultSet(resultSet));
+            }
+        } catch (SQLException ex) {
+            System.out.println("No se pudo realizar la consulta: " + ex.getMessage());
+            return null;
+        }
+        
+        
+         if(!activos.isEmpty()){
+            return activos;
+        }
+        return null;
+        
+    }
 
     public List<ActivoFijo> getAllActivos() {
         List<ActivoFijo> activos = new ArrayList();

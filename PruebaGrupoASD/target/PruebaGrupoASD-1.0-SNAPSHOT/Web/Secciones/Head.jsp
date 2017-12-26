@@ -36,7 +36,7 @@
         
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Buscar Activos</a></li>
+            <li><a href="${pageContext.request.contextPath}/Web/BuscarActivo.jsp">Buscar Activos</a></li>
             <li><a href="${pageContext.request.contextPath}/Web/BuscarTodosActivos.jsp">Listar todos los Activos</a></li>
             <li><a href="${pageContext.request.contextPath}/Web/CrearActivos.jsp">Crear Activos</a></li>
             <li><a href="#">Actualizar Activos</a></li>
