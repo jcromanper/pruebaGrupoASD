@@ -90,19 +90,27 @@ public class ServicioActivoFijo {
     }
     
     @PUT
-    @Path("actualizar/serial/{serial}")
+    @Path("actualizar/serial/{nSerial}/{serial}/{numInterno}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Object actualizarSerial(@PathParam("serial") String serial){
-        System.out.println("Serial: "+serial);        
-        return null;
+    public Object actualizarSerial(@PathParam("nSerial") String nSerial, @PathParam("serial") String serial, @PathParam("numInterno") String numInterno){
+        
+        if(activoDAO.actualizarSerial(nSerial,serial,numInterno) == 1){
+            return Response.status(Response.Status.OK).build();
+        }            
+        return Response.status(Response.Status.CONFLICT).build();       
+        
     }
     
     @PUT
-    @Path("actualizar/fechaBaja/{fechaBaja}")
+    @Path("actualizar/fechaBaja/{fechaBaja}/{serial}/{numInterno}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Object actualizarFechaBaja(@PathParam("fechaBaja") String fechaBaja){
-        System.out.println("Fecha Baja: "+fechaBaja);
-        return null;
+    public Object actualizarFechaBaja(@PathParam("fechaBaja") String fechaBaja, @PathParam("serial") String serial, @PathParam("numInterno") String numInterno){
+        //System.out.println("Fecha Baja: "+fechaBaja+" " +serial+" "+numInterno);
+        
+        if(activoDAO.actualizarFechaBaja(fechaBaja,serial,numInterno) == 1){
+            return Response.status(Response.Status.OK).build();
+        }            
+        return Response.status(Response.Status.CONFLICT).build();
     }
 
     private ActivoFijo crearActivo(JSONObject jsonObj) {
