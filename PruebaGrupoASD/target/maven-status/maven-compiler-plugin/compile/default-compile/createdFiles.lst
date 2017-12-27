@@ -1,9 +1,12 @@
 com\grupoasd\prueba\dao\ActivoFijoDAO.class
 com\grupoasd\prueba\modelo\Empleado.class
 com\grupoasd\prueba\dao\AreaDAO.class
+com\grupoasd\prueba\modelo\TipoCaracteristica.class
+com\grupoasd\prueba\dao\TipoCaracteristicaDAO.class
 com\grupoasd\prueba\modelo\TipoActivoFijo.class
 com\grupoasd\prueba\dao\CaracteristicaDAO.class
 com\grupoasd\prueba\dao\EmpleadoDAO.class
+com\grupoasd\prueba\modelo\ActivoFijo_Caracteristica.class
 com\grupoasd\prueba\servicios\ServicioArea.class
 com\grupoasd\prueba\dao\TipoActivoFijoDAO.class
 com\grupoasd\prueba\modelo\ActivoFijo.class

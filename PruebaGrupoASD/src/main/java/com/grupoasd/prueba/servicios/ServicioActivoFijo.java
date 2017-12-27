@@ -7,6 +7,7 @@ package com.grupoasd.prueba.servicios;
 
 import com.grupoasd.prueba.dao.ActivoFijoDAO;
 import com.grupoasd.prueba.modelo.ActivoFijo;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -32,8 +33,9 @@ public class ServicioActivoFijo {
     public Response crearActivo(String data){
         JSONObject jsonObj = new JSONObject(data);
         ActivoFijo activo = crearActivo(jsonObj);
+        ArrayList caracteristica = obtenerCaracteristicas(jsonObj);
         //System.out.println("Datos: "+jsonObj.getString("numInterno"));
-        if(activoDAO.crearActivo(activo) == 1){
+        if(activoDAO.crearActivo(activo,caracteristica) == 1){
             return Response.status(Response.Status.CREATED).header("Creado", "El recurso ha sido creado").build();
         }
         return Response.status(Response.Status.BAD_REQUEST).header("Solicitud incorrecta", "El recurso no pudo ser creado").build();       
@@ -125,6 +127,20 @@ public class ServicioActivoFijo {
         activo.setEstado(jsonObj.getInt("idEstado"));
         activo.setIdTipo(jsonObj.getInt("tipo"));
         return activo;
+    }
+
+   
+
+    private ArrayList<String> obtenerCaracteristicas(JSONObject jsonObj) {
+        
+        ArrayList<String> c = new ArrayList();
+        c.add(jsonObj.getString("peso"));
+        c.add(jsonObj.getString("alto"));
+        c.add(jsonObj.getString("ancho"));
+        c.add(jsonObj.getString("largo"));
+        c.add(jsonObj.getString("color"));
+        
+        return c;
     }
     
 }
