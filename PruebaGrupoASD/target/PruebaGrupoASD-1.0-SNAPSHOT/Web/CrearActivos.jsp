@@ -119,9 +119,6 @@
             }
         });
         limpiarCampos();
-
-
-
     }
 
     function limpiarCampos() {
