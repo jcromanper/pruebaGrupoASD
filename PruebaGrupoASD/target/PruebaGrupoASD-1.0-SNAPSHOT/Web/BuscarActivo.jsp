@@ -12,7 +12,7 @@
 <script>
 
     var activoA = {};
-    var detalles = {};
+
 
     function buscarTipo() {
         var tipo = $('#tipo').val()
@@ -88,6 +88,7 @@
     }
 
     function fijarActivo(a) {
+
         //console.log("Activo: " + a);
         this.activoA = a;
         //console.log(activoA.serial);
@@ -118,22 +119,27 @@
 
             }
         });
+
     }
 
     function actualizarSerial() {
         var serial = $('#serialAct').val();
-//        console.log("Actualizar Serial: " + serial);
+
+        console.log("Actualizar Serial: " + serial);
 
         $.ajax({
             type: 'PUT',
-            url: '${pageContext.request.contextPath}/rest/activo/actualizar/serial/' + serial,
+            url: '${pageContext.request.contextPath}/rest/activo/actualizar/serial/' + serial+'/'+activoA.serial+'/'+activoA.numInterno,
             data: JSON.stringify(serial),
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            success: function (activos) {
-                console.log(activos);
+
+            success: function (response) {
+                if (response !== 'undefined') {
+                        alert("Serial ACTUALIZADO");
+                }
 
             },
             error: function (textStatus) {
@@ -149,28 +155,36 @@
         var dateBaja = $('#dateBaja').val();
         console.log("Actualizar Fecha: " + dateBaja);
 
-        $.ajax({
-            type: 'PUT',
-            url: '${pageContext.request.contextPath}/rest/activo/actualizar/fechaBaja/' + dateBaja,
-            data: JSON.stringify(dateBaja),
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            success: function (activos) {
-                console.log(activos);
 
-            },
-            error: function (textStatus) {
-                console.log(textStatus);
+        if (dateBaja < activoA.date) {
+            alert("Fecha de baja erronea");
+        } else {
 
-            }
-        });
+            $.ajax({
+                type: 'PUT',
+                url: '${pageContext.request.contextPath}/rest/activo/actualizar/fechaBaja/' + dateBaja + '/' + activoA.serial + '/' + activoA.numInterno,
+                data: JSON.stringify(dateBaja),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                success: function (response) {
+                    if (response !== 'undefined') {
+                        alert("Fecha de Baja ACTUALIZADA");
+                    }
 
-        $('#dateBaja').val("");
+                },
+                error: function (textStatus) {
+                    console.log(textStatus);
+
+                }
+            });
+
+            $('#dateBaja').val("");
+        }
 
     }
-    
+
     function obtenerCabeceraDetalles(cabeceras){
         var text = "<tr>";
         for (var cabecera in cabeceras) {
@@ -187,7 +201,7 @@
         }
         text+="</tr>";        
         return text;
-        
+
     }
 
     function obtenerFila(activo) {
@@ -204,9 +218,11 @@
                 <td>" + activo.dateBaja + "</td>\
                 <td>" + activo.idTipo + "</td>\
                 <td>" + activo.estado + "</td>\
+
                 <td><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#myModalSerial' onclick = 'fijarActivo(" + JSON.stringify(activo) + ")'>Serial</button></td>\\n\
                 <td><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#myModalFecha' onclick = 'fijarActivo(" + JSON.stringify(activo) + ")'>Fecha</button></td>\
                 <td><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#myModalDetalles' onclick = 'buscarDetalles(" + JSON.stringify(activo) + ")'>Detalles</button></td></tr>"
+
 
     }
 

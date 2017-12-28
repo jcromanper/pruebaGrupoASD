@@ -11,4 +11,18 @@ package com.grupoasd.prueba.modelo;
  */
 public class Caracteristica {
     
+    
+    private String detalleCaracteristica;
+
+
+    public String getDetalleCaracteristica() {
+        return detalleCaracteristica;
+    }
+
+    public void setDetalleCaracteristica(String detalleCaracteristica) {
+        this.detalleCaracteristica = detalleCaracteristica;
+    }
+    
+    
+    
 }

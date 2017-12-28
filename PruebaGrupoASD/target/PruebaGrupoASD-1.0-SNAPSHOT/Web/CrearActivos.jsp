@@ -4,6 +4,9 @@
     Author     : Santiago
 --%>
 
+
+<%@page import="com.grupoasd.prueba.modelo.TipoCaracteristica"%>
+<%@page import="com.grupoasd.prueba.dao.TipoCaracteristicaDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="com.grupoasd.prueba.modelo.TipoActivoFijo"%>
 <%@page import="com.grupoasd.prueba.dao.TipoActivoFijoDAO"%>
@@ -16,6 +19,10 @@
 <%
     TipoActivoFijoDAO tipoDAO = new TipoActivoFijoDAO();
     List<TipoActivoFijo> tipos = tipoDAO.getTipos();
+    
+    TipoCaracteristicaDAO tipoCDAO = new TipoCaracteristicaDAO();
+    List<TipoCaracteristica> tiposC =tipoCDAO.getAll();
+    
 
 
 %>
@@ -37,7 +44,7 @@
 
         <div class="form-group">
             <label for="nombre">Nombre Activo:</label>
-            <input type="text" name="nombre" min="1" class="form-control" id="nombre">
+            <input type="text" name="nombre" class="form-control" id="nombre">
         </div>
 
         <div class="form-group">
@@ -64,6 +71,23 @@
             <label for="descripcion">Descripción</label>
             <textarea style="overflow:auto;resize:none" name="descripcion" class="form-control" rows="5" id="descripcion"></textarea>
         </div>
+            
+        <hr>
+        
+        <h2>Caracteristicas Activo:</h2>    
+        <%
+            for (TipoCaracteristica tipoC : tiposC) {
+               out.print("<div class=\"form-group\">");
+                    out.print("<label for=\""+tipoC.getNombreTipoCaracteristica()+"\">"+tipoC.getNombreTipoCaracteristica()+"</label>");
+                    out.print("<input type=\"text\" name=\""+tipoC.getNombreTipoCaracteristica()+"\" class=\"form-control\" id=\"caracteristica"+tipoC.getIdTipoCaracteristica()+"\">");
+               
+               out.print("</div>");
+                    
+            }
+        %>
+        
+        
+            
         <input class="btn btn-success" type="button" onclick="crearActivo()" value = "Crear Activo" />   
     </form>
 </div>
@@ -86,6 +110,8 @@
             data: JSON.stringify(datos()),
             success: function (response) {
                 console.log(response);
+                if(response)
+                    alert("Activo Fijo creado");
             },
             error: function (textStatus) {
                 console.log(textStatus);
@@ -102,6 +128,11 @@
         $('#descripcion').val("");
         $('#valor').val("");
         $('#date').val("");
+        $('#caracteristica1').val("");
+        $('#caracteristica2').val("");
+        $('#caracteristica3').val("");
+        $('#caracteristica4').val("");
+        $('#caracteristica5').val("");  
     }
 
     function datos() {
@@ -115,6 +146,11 @@
             fechaCompra: $('#date').val(),
             tipo: $('#tipo').val(),
             idEstado: 1,
+            peso: $('#caracteristica1').val(),
+            alto:$('#caracteristica2').val(),
+            ancho:$('#caracteristica3').val(),
+            largo:$('#caracteristica4').val(),
+            color:$('#caracteristica5').val(),           
 
         };
     }
