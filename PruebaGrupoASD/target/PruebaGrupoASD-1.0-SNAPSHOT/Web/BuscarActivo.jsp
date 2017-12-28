@@ -218,7 +218,6 @@
                 <td>" + activo.dateBaja + "</td>\
                 <td>" + activo.idTipo + "</td>\
                 <td>" + activo.estado + "</td>\
-
                 <td><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#myModalSerial' onclick = 'fijarActivo(" + JSON.stringify(activo) + ")'>Serial</button></td>\\n\
                 <td><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#myModalFecha' onclick = 'fijarActivo(" + JSON.stringify(activo) + ")'>Fecha</button></td>\
                 <td><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#myModalDetalles' onclick = 'buscarDetalles(" + JSON.stringify(activo) + ")'>Detalles</button></td></tr>"

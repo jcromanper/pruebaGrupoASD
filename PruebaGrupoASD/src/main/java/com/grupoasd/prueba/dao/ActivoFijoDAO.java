@@ -203,12 +203,6 @@ public class ActivoFijoDAO extends AbstractDAO {
         
     }
 
-
-}
-
-
-
-
     public int actualizarFechaBaja(String fechaBaja, String serial, String numInterno) {
         
         String update="UPDATE ACTIVOFIJO SET FECHABAJA=STR_TO_DATE('"+fechaBaja+"','%Y-%m-%d') WHERE SERIAL='"+serial+"' AND NUMINTERNOINVENTARIO="+numInterno;
