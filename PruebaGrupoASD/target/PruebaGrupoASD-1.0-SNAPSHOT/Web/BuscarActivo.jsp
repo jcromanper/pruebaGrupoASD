@@ -13,6 +13,7 @@
 
     var activoA = {};
 
+
     function buscarTipo() {
         var tipo = $('#tipo').val()
 
@@ -87,14 +88,45 @@
     }
 
     function fijarActivo(a) {
-        console.log("Activo: " + a);
+
+        //console.log("Activo: " + a);
         this.activoA = a;
-        console.log(activoA.serial);
+        //console.log(activoA.serial);
+    }
+
+    function buscarDetalles(activo) {
+        console.log("Buscar Detalles");
+        $.ajax({
+            type: 'GET',
+            url: '${pageContext.request.contextPath}/rest/activo/buscar/detalles/' + activo.serial+'/'+activo.numInterno,
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            success: function (detalles) {
+                console.log(detalles);
+                $('#detallesHead').empty();
+                $('#detallesBody').empty();
+                
+                $('#detallesHead').append(obtenerCabeceraDetalles(Object.keys(detalles)));
+                $('#detallesBody').append(obtenerCuerpoDetalles(detalles));
+                
+                
+                
+            },
+            error: function (textStatus) {
+                console.log(textStatus);
+
+            }
+        });
+
     }
 
     function actualizarSerial() {
         var serial = $('#serialAct').val();
+
         console.log("Actualizar Serial: " + serial);
+
         $.ajax({
             type: 'PUT',
             url: '${pageContext.request.contextPath}/rest/activo/actualizar/serial/' + serial+'/'+activoA.serial+'/'+activoA.numInterno,
@@ -103,6 +135,7 @@
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
+
             success: function (response) {
                 if (response !== 'undefined') {
                         alert("Serial ACTUALIZADO");
@@ -121,6 +154,7 @@
     function actualizarFecha() {
         var dateBaja = $('#dateBaja').val();
         console.log("Actualizar Fecha: " + dateBaja);
+
 
         if (dateBaja < activoA.date) {
             alert("Fecha de baja erronea");
@@ -151,6 +185,25 @@
 
     }
 
+    function obtenerCabeceraDetalles(cabeceras){
+        var text = "<tr>";
+        for (var cabecera in cabeceras) {
+            text +="<th>"+cabeceras[cabecera]+"</th>";
+        }
+        text+="</tr>";        
+        return text;
+    }
+    function obtenerCuerpoDetalles(detalles){
+        var text = "<tr>";
+        
+        for (var detalle in detalles) {
+            text +="<td>"+detalles[detalle]+"</td>";
+        }
+        text+="</tr>";        
+        return text;
+
+    }
+
     function obtenerFila(activo) {
         return "<tr>\
                 <td>" + activo.numInterno + "</td>\
@@ -165,8 +218,11 @@
                 <td>" + activo.dateBaja + "</td>\
                 <td>" + activo.idTipo + "</td>\
                 <td>" + activo.estado + "</td>\
-                <td><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#myModalSerial' onclick = 'fijarActivo(" + JSON.stringify(activo) + ")'>Serial</button></td>\
-                <td><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#myModalFecha' onclick = 'fijarActivo(" + JSON.stringify(activo) + ")'>Fecha</button></td></tr>"
+
+                <td><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#myModalSerial' onclick = 'fijarActivo(" + JSON.stringify(activo) + ")'>Serial</button></td>\\n\
+                <td><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#myModalFecha' onclick = 'fijarActivo(" + JSON.stringify(activo) + ")'>Fecha</button></td>\
+                <td><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#myModalDetalles' onclick = 'buscarDetalles(" + JSON.stringify(activo) + ")'>Detalles</button></td></tr>"
+
 
     }
 
@@ -384,6 +440,36 @@
         </div>
     </div>
 </div> 
+
+<!-- Modal Detalles-->
+<div class="modal fade" id="myModalDetalles" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detalles Activo Fijo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <table id="detallesActivo" class="table table-striped" cellspacing="0" width="100%">
+                    <thead id="detallesHead">
+                        
+                    </thead>
+                    <tbody id="detallesBody">
+                        
+                    </tbody>
+                </table>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <jsp:include page="Secciones/Footer.jsp"/>
 

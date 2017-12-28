@@ -9,6 +9,7 @@ import com.grupoasd.prueba.dao.ActivoFijoDAO;
 import com.grupoasd.prueba.modelo.ActivoFijo;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -82,13 +83,28 @@ public class ServicioActivoFijo {
     @GET
     @Path("buscar/serial/{serial}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Object getActivoSeriañ(@PathParam("serial") String serial){
+    public Object getActivoSerial(@PathParam("serial") String serial){
                
         List<ActivoFijo> activos = activoDAO.getActivosBySerial(serial);        
         if (activos != null)
             return Response.ok(activos).build();
         else
             return Response.status(Response.Status.NOT_FOUND);  
+    }
+    
+    @GET
+    @Path("buscar/detalles/{serial}/{numInterno}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Object getDetalles(@PathParam("serial") String serial,@PathParam("numInterno") int numInterno){
+              
+        //System.out.println("Serial: "+serial+" Num Interno: "+numInterno);
+        Map<String,String> detalleActivo = activoDAO.getDetalle(serial,numInterno);
+        
+        if (detalleActivo != null)
+            return Response.ok(detalleActivo).build();
+        else
+            return Response.status(Response.Status.NOT_FOUND); 
+         
     }
     
     @PUT

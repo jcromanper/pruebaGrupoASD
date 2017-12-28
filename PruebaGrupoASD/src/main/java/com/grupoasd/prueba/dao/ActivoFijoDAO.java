@@ -11,6 +11,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
 
 
 /**
@@ -171,6 +174,41 @@ public class ActivoFijoDAO extends AbstractDAO {
         return null;
     }
 
+
+    public Map getDetalle(String serial, int numInterno) {
+        Map<String,String> detalles = new TreeMap<String, String>();;
+        String consulta = "SELECT tc.nombretipocaracteristica CARACTERISTICA, c.detallecaracteristica DETALLE FROM tipocaracteristica tc, caracteristica c, activofijo_caracteristica af WHERE  af.idtipocaracteristica = tc.idtipocaracteristica AND af.idcaracteristica = c.idcaracteristica AND af.numinternoinventario = "+numInterno+" AND af.serial = '"+serial+"'";
+        
+        try {
+            this.connection = Conexion.getConexion();
+            this.statement = connection.createStatement();
+            this.resultSet = statement.executeQuery(consulta);
+            
+            while(resultSet.next()){
+                detalles.put(resultSet.getString("CARACTERISTICA"),resultSet.getString("DETALLE"));
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("No se pudo realizar la consulta: " + ex.getMessage());
+            return null;
+        }
+        
+        if(!detalles.isEmpty()){
+            return detalles;
+        }
+        return null;       
+        
+        
+        
+        
+    }
+
+
+}
+
+
+
+
     public int actualizarFechaBaja(String fechaBaja, String serial, String numInterno) {
         
         String update="UPDATE ACTIVOFIJO SET FECHABAJA=STR_TO_DATE('"+fechaBaja+"','%Y-%m-%d') WHERE SERIAL='"+serial+"' AND NUMINTERNOINVENTARIO="+numInterno;
@@ -206,4 +244,3 @@ public class ActivoFijoDAO extends AbstractDAO {
 
 }
 
-/*;*/
