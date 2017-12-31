@@ -23,8 +23,7 @@
     TipoCaracteristicaDAO tipoCDAO = new TipoCaracteristicaDAO();
     List<TipoCaracteristica> tiposC =tipoCDAO.getAll();
     
-
-
+    
 %>
 
 

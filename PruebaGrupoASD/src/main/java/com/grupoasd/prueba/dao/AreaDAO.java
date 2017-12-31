@@ -20,7 +20,7 @@ public class AreaDAO extends AbstractDAO{
 
     public List<Area> getAreas(){
         List<Area> areas = new ArrayList();
-        String consulta = "SELECT a.idarea IDAREA, a.nombrearea NOMBREAREA, c.nombreciudad NOMBRECIUDAD FROM AREA a, CIUDAD c WHERE c.idciudad = a.idciudad";
+        String consulta = "SELECT a.idarea IDAREA, a.nombrearea NOMBREAREA, c.nombreciudad NOMBRECIUDAD, a.idCiudad IDCIUDAD FROM AREA a, CIUDAD c WHERE c.idciudad = a.idciudad";
         try {
             this.connection = Conexion.getConexion();
             this.statement = connection.createStatement();
@@ -52,6 +52,7 @@ public class AreaDAO extends AbstractDAO{
         area.setIdArea(resultSet.getInt("IDAREA"));
         area.setNombreArea(resultSet.getString("NOMBREAREA"));
         area.setNombreCiudad(resultSet.getString("NOMBRECIUDAD"));
+        area.setIdCiudad(resultSet.getInt("IDCIUDAD"));
         
         return area;
     }
