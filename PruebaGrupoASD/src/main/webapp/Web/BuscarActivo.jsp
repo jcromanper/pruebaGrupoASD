@@ -210,8 +210,8 @@
                 <td>" + activo.serial + "</td>\
                 <td>" + activo.nombre + "</td>\
                 <td>" + activo.cedula + "</td>\
-                <td>" + activo.cedula + "</td>\
-                <td>" + activo.cedula + "</td>\
+                <td>" + activo.area + "</td>\
+                <td>" + activo.ciudad + "</td>\
                 <td>" + activo.descripcion + "</td>\
                 <td>" + activo.valor + "</td>\
                 <td>" + activo.date + "</td>\

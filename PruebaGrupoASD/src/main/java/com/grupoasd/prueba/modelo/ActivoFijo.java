@@ -25,6 +25,9 @@ public class ActivoFijo {
     private String empleadoAsignado;
     private String ciudad;
     private String area;
+    private String idArea;
+    private String idCiudad;
+    private String idEstado;
 
     public int getIdTipo() {
         return idTipo;
@@ -130,6 +133,33 @@ public class ActivoFijo {
     public void setArea(String area) {
         this.area = area;
     }
+
+    public String getIdArea() {
+        return idArea;
+    }
+
+    public void setIdArea(String idArea) {
+        this.idArea = idArea;
+    }
+
+    public String getIdCiudad() {
+        return idCiudad;
+    }
+
+    public void setIdCiudad(String idCiudad) {
+        this.idCiudad = idCiudad;
+    }
+
+    public String getIdEstado() {
+        return idEstado;
+    }
+
+    public void setIdEstado(String idEstado) {
+        this.idEstado = idEstado;
+    }
+    
+    
+
     
     
     

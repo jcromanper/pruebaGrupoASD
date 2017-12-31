@@ -12,7 +12,7 @@ package com.grupoasd.prueba.modelo;
 public class Area {
     
     
-    private int idArea;
+    private int idArea,idCiudad;
     private String nombreArea;
     private String nombreCiudad;
 
@@ -39,6 +39,16 @@ public class Area {
     public void setIdArea(int idArea) {
         this.idArea = idArea;
     }
+
+    public int getIdCiudad() {
+        return idCiudad;
+    }
+
+    public void setIdCiudad(int idCiudad) {
+        this.idCiudad = idCiudad;
+    }
+    
+    
     
     
 }

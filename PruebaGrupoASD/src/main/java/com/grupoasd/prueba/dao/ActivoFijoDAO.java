@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 
@@ -65,8 +67,8 @@ public class ActivoFijoDAO extends AbstractDAO {
         activo.setEstado(resultSet.getInt("IDESTADO"));  
         activo.setCedula(resultSet.getString("CEDULA"));
         //activo.setEmpleadoAsignado(resultSet.getString("NOMBREEMPLEADO"));
-        //activo.setArea(resultSet.getString("NOMBREAREA"));
-        //activo.setCiudad(resultSet.getString("NOMBRECIUDAD"));
+        activo.setArea(resultSet.getString("NOMBREAREA"));
+        activo.setCiudad(resultSet.getString("NOMBRECIUDAD"));
         activo.setNombre(resultSet.getString("NOMBREACTIVO"));
         activo.setDate(resultSet.getString("FECHACOMPRA"));
         activo.setDateBaja(resultSet.getString("FECHABAJA"));        
@@ -80,7 +82,7 @@ public class ActivoFijoDAO extends AbstractDAO {
     public List<ActivoFijo> getActivosByTipo(String tipo){
         List<ActivoFijo> activos = new ArrayList();
         
-        String consulta = "SELECT * FROM ACTIVOFIJO WHERE IDTIPOACTIVOFIJO="+tipo;
+        String consulta = "select *,c.nombreciudad NOMBREACIUDAD,a.nombrearea NOMBREAREA from activofijo af,ciudad c, area a where c.idciudad = af.idciudad and af.idarea = a.idarea and a.idciudad=c.idciudad and IDTIPOACTIVOFIJO="+tipo;
         
         try {
             this.connection = Conexion.getConexion();
@@ -104,7 +106,7 @@ public class ActivoFijoDAO extends AbstractDAO {
     public List<ActivoFijo> getActivosByFecha(String fecha){
         List<ActivoFijo> activos = new ArrayList();
         
-        String consulta = "SELECT * FROM ACTIVOFIJO WHERE FECHACOMPRA='"+fecha+"'";
+        String consulta = "select *,c.nombreciudad NOMBREACIUDAD,a.nombrearea NOMBREAREA from activofijo af,ciudad c, area a where c.idciudad = af.idciudad and af.idarea = a.idarea and a.idciudad=c.idciudad and FECHACOMPRA='"+fecha+"'";
         
         try {
             this.connection = Conexion.getConexion();
@@ -128,7 +130,7 @@ public class ActivoFijoDAO extends AbstractDAO {
     public List<ActivoFijo> getActivosBySerial(String serial){
         List<ActivoFijo> activos = new ArrayList();
         
-        String consulta = "SELECT * FROM ACTIVOFIJO WHERE SERIAL='"+serial+"'";
+        String consulta = "select *,c.nombreciudad NOMBREACIUDAD,a.nombrearea NOMBREAREA from activofijo af,ciudad c, area a where c.idciudad = af.idciudad and af.idarea = a.idarea and a.idciudad=c.idciudad and SERIAL='"+serial+"'";
         
         try {
             this.connection = Conexion.getConexion();
@@ -154,7 +156,8 @@ public class ActivoFijoDAO extends AbstractDAO {
     public List<ActivoFijo> getAllActivos() {
         List<ActivoFijo> activos = new ArrayList();
         
-        String consulta = "SELECT * FROM ACTIVOFIJO";
+        String consulta = "select *,c.nombreciudad NOMBREACIUDAD,a.nombrearea NOMBREAREA from activofijo af,ciudad c, area a where c.idciudad = af.idciudad and af.idarea = a.idarea and a.idciudad=c.idciudad";
+        
         try {
             this.connection = Conexion.getConexion();
             this.statement = connection.createStatement();
@@ -233,6 +236,23 @@ public class ActivoFijoDAO extends AbstractDAO {
             return 0;
         }
         
+        return r;
+    }
+
+    public int actualizarActivo(ActivoFijo activo) {
+        String cedula = !activo.getCedula().equals("null") ? "'"+activo.getCedula()+"'":null;       
+        
+        String consulta = "UPDATE ACTIVOFIJO SET CEDULA="+cedula+",IDCIUDAD ="+activo.getIdCiudad()+", IDAREA="+activo.getIdArea()+", IDESTADO = "+activo.getIdEstado()+" WHERE NUMINTERNOINVENTARIO = "+activo.getNumInterno()+" AND SERIAL = '"+activo.getSerial()+"'";
+        System.out.println("Consulta: "+consulta);
+        int r=0;
+        try {
+            this.connection = Conexion.getConexion();
+            this.statement = connection.createStatement();
+            r = this.statement.executeUpdate(consulta);
+        } catch (SQLException ex) {
+            System.out.println("No se pudo realizar la consulta: " + ex.getMessage());
+            return 0;
+        }
         return r;
     }
 
