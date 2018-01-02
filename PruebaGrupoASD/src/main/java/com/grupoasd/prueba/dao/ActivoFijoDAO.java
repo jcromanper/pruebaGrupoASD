@@ -65,10 +65,9 @@ public class ActivoFijoDAO extends AbstractDAO {
         activo.setSerial(resultSet.getString("SERIAL"));
         activo.setIdTipo(resultSet.getInt("IDTIPOACTIVOFIJO"));        
         activo.setEstado(resultSet.getInt("IDESTADO"));  
-        activo.setCedula(resultSet.getString("CEDULA"));
-        //activo.setEmpleadoAsignado(resultSet.getString("NOMBREEMPLEADO"));
-        activo.setArea(resultSet.getString("NOMBREAREA"));
-        activo.setCiudad(resultSet.getString("NOMBRECIUDAD"));
+        activo.setCedula(resultSet.getString("CEDULA"));        
+        activo.setArea(resultSet.getString("IDAREA"));
+        activo.setCiudad(resultSet.getString("IDCIUDAD"));
         activo.setNombre(resultSet.getString("NOMBREACTIVO"));
         activo.setDate(resultSet.getString("FECHACOMPRA"));
         activo.setDateBaja(resultSet.getString("FECHABAJA"));        
@@ -82,7 +81,7 @@ public class ActivoFijoDAO extends AbstractDAO {
     public List<ActivoFijo> getActivosByTipo(String tipo){
         List<ActivoFijo> activos = new ArrayList();
         
-        String consulta = "select *,c.nombreciudad NOMBREACIUDAD,a.nombrearea NOMBREAREA from activofijo af,ciudad c, area a where c.idciudad = af.idciudad and af.idarea = a.idarea and a.idciudad=c.idciudad and IDTIPOACTIVOFIJO="+tipo;
+        String consulta = "select * from activofijo WHERE IDTIPOACTIVOFIJO="+tipo;
         
         try {
             this.connection = Conexion.getConexion();
@@ -106,7 +105,7 @@ public class ActivoFijoDAO extends AbstractDAO {
     public List<ActivoFijo> getActivosByFecha(String fecha){
         List<ActivoFijo> activos = new ArrayList();
         
-        String consulta = "select *,c.nombreciudad NOMBREACIUDAD,a.nombrearea NOMBREAREA from activofijo af,ciudad c, area a where c.idciudad = af.idciudad and af.idarea = a.idarea and a.idciudad=c.idciudad and FECHACOMPRA='"+fecha+"'";
+        String consulta = "SELECT * FROM activofijo WHERE FECHACOMPRA='"+fecha+"'";
         
         try {
             this.connection = Conexion.getConexion();
@@ -130,7 +129,7 @@ public class ActivoFijoDAO extends AbstractDAO {
     public List<ActivoFijo> getActivosBySerial(String serial){
         List<ActivoFijo> activos = new ArrayList();
         
-        String consulta = "select *,c.nombreciudad NOMBREACIUDAD,a.nombrearea NOMBREAREA from activofijo af,ciudad c, area a where c.idciudad = af.idciudad and af.idarea = a.idarea and a.idciudad=c.idciudad and SERIAL='"+serial+"'";
+        String consulta = "SELECT * FROM activofijo WHERE SERIAL='"+serial+"'";
         
         try {
             this.connection = Conexion.getConexion();
@@ -156,7 +155,7 @@ public class ActivoFijoDAO extends AbstractDAO {
     public List<ActivoFijo> getAllActivos() {
         List<ActivoFijo> activos = new ArrayList();
         
-        String consulta = "select *,c.nombreciudad NOMBREACIUDAD,a.nombrearea NOMBREAREA from activofijo af,ciudad c, area a where c.idciudad = af.idciudad and af.idarea = a.idarea and a.idciudad=c.idciudad";
+        String consulta = "SELECT * FROM activofijo";
         
         try {
             this.connection = Conexion.getConexion();
