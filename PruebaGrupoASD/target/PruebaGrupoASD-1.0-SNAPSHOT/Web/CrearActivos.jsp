@@ -1,10 +1,3 @@
-<%-- 
-    Document   : CrearActivos
-    Created on : 21/12/2017, 06:18:31 PM
-    Author     : Santiago
---%>
-
-
 <%@page import="com.grupoasd.prueba.modelo.TipoCaracteristica"%>
 <%@page import="com.grupoasd.prueba.dao.TipoCaracteristicaDAO"%>
 <%@page import="java.util.List"%>

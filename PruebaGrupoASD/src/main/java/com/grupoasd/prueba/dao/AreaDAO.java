@@ -12,10 +12,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Santiago
- */
 public class AreaDAO extends AbstractDAO{
 
     public List<Area> getAreas(){

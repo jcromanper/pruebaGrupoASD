@@ -5,12 +5,7 @@
  */
 package com.grupoasd.prueba.modelo;
 
-/**
- *
- * @author Santiago
- */
 public class Area {
-    
     
     private int idArea,idCiudad;
     private String nombreArea;
@@ -47,8 +42,4 @@ public class Area {
     public void setIdCiudad(int idCiudad) {
         this.idCiudad = idCiudad;
     }
-    
-    
-    
-    
-}
+ }

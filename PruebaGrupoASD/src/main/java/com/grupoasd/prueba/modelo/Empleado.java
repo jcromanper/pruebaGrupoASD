@@ -7,10 +7,6 @@ package com.grupoasd.prueba.modelo;
 
 import java.util.Date;
 
-/**
- *
- * @author Santiago
- */
 public class Empleado {
     
     private String cedula;

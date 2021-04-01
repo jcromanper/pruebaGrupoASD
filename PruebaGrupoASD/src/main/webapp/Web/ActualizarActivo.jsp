@@ -1,9 +1,3 @@
-<%-- 
-    Document   : ActualizarActivo
-    Created on : 28/12/2017, 05:36:17 PM
-    Author     : Santiago
---%>
-
 <%@page import="com.grupoasd.prueba.modelo.Estado"%>
 <%@page import="com.grupoasd.prueba.dao.EstadoDAO"%>
 <%@page import="com.grupoasd.prueba.modelo.Empleado"%>

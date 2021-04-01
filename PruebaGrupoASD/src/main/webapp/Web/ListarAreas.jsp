@@ -1,11 +1,7 @@
-<%-- 
-    Document   : ListarAreas
-    Created on : 21/12/2017, 02:23:39 PM
-    Author     : Santiago
---%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="Secciones/Head.jsp" />
-    <h2>Módulo para listar areas.</h2>
+    <h2>Listar areas.</h2>
         
         <table id="area" class="table table-striped" cellspacing="0" width="100%">
             <thead>

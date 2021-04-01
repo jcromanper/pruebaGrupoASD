@@ -1,13 +1,7 @@
-<%-- 
-    Document   : index
-    Created on : 18/12/2017, 09:35:16 PM
-    Author     : Santiago
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="Secciones/Head.jsp" />
 
-        <h2>Módulo para listar empleados.</h2>
+        <h2>Empleados.</h2>
         
         <table id="empleados" class="table table-striped" cellspacing="0" width="100%">
             <thead>

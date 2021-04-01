@@ -16,12 +16,6 @@ import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-
-/**
- *
- * @author Santiago
- */
 public class ActivoFijoDAO extends AbstractDAO {
 
     public int crearActivo(ActivoFijo activo, ArrayList<String> caracteristica) {

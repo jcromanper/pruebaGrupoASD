@@ -8,17 +8,10 @@ package com.grupoasd.prueba.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- *
- * @author Santiago
- */
 public class CaracteristicaDAO extends AbstractDAO{
 
     @Override
     public Object getEntityByResultSet(ResultSet resultSet) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
-    
 }

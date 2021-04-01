@@ -1,14 +1,8 @@
-<%-- 
-    Document   : BuscarTodosActivos
-    Created on : 23/12/2017, 07:32:52 PM
-    Author     : Santiago
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <jsp:include page="Secciones/Head.jsp"  />
 
-<h2>Módulo para listar activos.</h2>
+<h2>Listar activos.</h2>
 
 <table id="activo" class="table table-striped" cellspacing="0" width="100%">
     <thead>

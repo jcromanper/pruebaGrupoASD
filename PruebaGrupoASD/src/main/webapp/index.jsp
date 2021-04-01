@@ -1,14 +1,7 @@
-<%-- 
-    Document   : index
-    Created on : 18/12/2017, 09:35:16 PM
-    Author     : Santiago
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="Web/Secciones/Head.jsp" />
 
-        <h2>Página Inicio</h2>
-
+        <h4>PRUEBA TECNICA GRUPO ASD</h4>
 
 <jsp:include page="Web/Secciones/Footer.jsp" />
 

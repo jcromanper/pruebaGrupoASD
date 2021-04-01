@@ -6,10 +6,6 @@
 package com.grupoasd.prueba.modelo;
 
 
-/**
- *
- * @author Santiago
- */
 public class ActivoFijo {
     
     private int numInterno;

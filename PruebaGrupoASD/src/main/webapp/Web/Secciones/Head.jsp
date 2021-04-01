@@ -1,9 +1,3 @@
-<%-- 
-    Document   : Head
-    Created on : 18/12/2017, 09:33:48 PM
-    Author     : Santiago
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -32,7 +26,6 @@
           </button>
           <a class="navbar-brand" href="${pageContext.request.contextPath}">Activos Fijos Grupo ASD</a>
         </div>
-    
         
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
@@ -47,6 +40,3 @@
         </div>
       </div>
     </nav>
-    
-   
-    

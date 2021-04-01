@@ -12,14 +12,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Santiago
- */
 public class EmpleadoDAO extends AbstractDAO{
 
-    
-    
     public List<Empleado> getEmpleados(){
         List<Empleado> empleados = new ArrayList();
 

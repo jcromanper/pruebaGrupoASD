@@ -13,10 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-/**
- *
- * @author Santiago
- */
 public class TipoCaracteristicaDAO extends AbstractDAO{
 
     @Override

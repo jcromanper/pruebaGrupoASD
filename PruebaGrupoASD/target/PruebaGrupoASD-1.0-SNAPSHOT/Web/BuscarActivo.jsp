@@ -1,8 +1,3 @@
-<%-- 
-    Document   : BuscarActivo
-    Created on : 25/12/2017, 01:49:20 PM
-    Author     : Santiago
---%>
 <%@page import="com.grupoasd.prueba.modelo.TipoActivoFijo"%>
 <%@page import="java.util.List"%>
 <%@page import="com.grupoasd.prueba.dao.TipoActivoFijoDAO"%>

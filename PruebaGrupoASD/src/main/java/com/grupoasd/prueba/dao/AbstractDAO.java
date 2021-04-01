@@ -7,10 +7,6 @@ import java.sql.Statement;
 import com.grupoasd.prueba.conexion.Conexion;
 import java.sql.SQLException;
 
-/**
- *
- * @author Santiago
- */
 public abstract class AbstractDAO {
 
     protected Statement statement;
@@ -20,7 +16,5 @@ public abstract class AbstractDAO {
     public AbstractDAO(){
         connection = Conexion.getConexion();
     }
-
-   
     abstract public Object getEntityByResultSet(ResultSet resultSet) throws SQLException;
 }
